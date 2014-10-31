@@ -89,6 +89,10 @@ module Puma
 
           break unless continue
 
+          Thread.current.keys.each do |key|
+            Thread.current[key] = nil unless key == :__recursive_key__
+          end
+
           block.call(work, *extra)
         end
 
@@ -114,7 +118,7 @@ module Puma
 
         @todo << work
 
-        if @waiting == 0 and @spawned < @max
+        if @waiting < @todo.size and @spawned < @max
           spawn_thread
         end
 

@@ -11,7 +11,7 @@ HOE = Hoe.spec "puma" do
   self.readme_file    = "README.md"
   self.urls = %w!http://puma.io https://github.com/puma/puma!
 
-  license "BSD"
+  license "BSD-3-Clause"
   developer 'Evan Phoenix', 'evan@phx.io'
 
   spec_extras[:extensions]  = ["ext/puma_http11/extconf.rb"]
@@ -22,7 +22,7 @@ HOE = Hoe.spec "puma" do
 
   dependency "rack", [">= 1.1", "< 2.0"]
 
-  extra_dev_deps << ["rake-compiler", "~> 0.8.0"]
+  extra_dev_deps << ["rake-compiler", "~> 0.8"]
 end
 
 task :prerelease => [:clobber, :check_manifest, :test]
